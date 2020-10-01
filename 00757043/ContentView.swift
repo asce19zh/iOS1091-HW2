@@ -82,41 +82,56 @@ struct ContentView: View {
                 path.addQuadCurve(to: CGPoint(x: 166, y: 93), control: CGPoint(x: 169, y: 121))
                 path.addQuadCurve(to: CGPoint(x: 195, y: 127), control: CGPoint(x: 175, y: 119))
             }.stroke(lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/) //kami
-            Path{(path) in
-                path.move(to: CGPoint(x: 102, y: 183))
-                path.addQuadCurve(to: CGPoint(x: 160, y: 181), control: CGPoint(x: 131, y: 190))
-                path.addQuadCurve(to: CGPoint(x: 102, y: 183), control: CGPoint(x: 131, y: 200))
-                
-            }.stroke(lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/) //kuchi
-            Eye().stroke()
-            Eye().stroke(lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/).rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0)).offset(x: -60, y: 0)
-            Path{(path) in
-                path.move(to: CGPoint(x: 130, y: 166))
-                path.addLine(to: CGPoint(x: 130, y: 169))
-            }.stroke(style: StrokeStyle(lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/,lineCap:.round
-            ))
-            Path{(path) in
-                path.move(to: CGPoint(x: 99, y: 141))
-                path.addQuadCurve(to: CGPoint(x: 114, y: 147), control: CGPoint(x: 108, y: 143))
-            }.stroke(lineWidth: 1)
-            Path{(path) in
-                path.move(to: CGPoint(x: 144, y: 148))
-                path.addQuadCurve(to: CGPoint(x: 159, y: 142), control: CGPoint(x: 147, y: 146))
-            }.stroke(lineWidth: 1)
-            
+            Group {
+                Path{(path) in
+                    path.move(to: CGPoint(x: 102, y: 183))
+                    path.addQuadCurve(to: CGPoint(x: 160, y: 181), control: CGPoint(x: 131, y: 190))
+                    path.addQuadCurve(to: CGPoint(x: 102, y: 183), control: CGPoint(x: 131, y: 200))
+                    
+                }.stroke(lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/)
+                Eye().stroke()
+                Eye().stroke(lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/).rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0)).offset(x: -60, y: 0)
+                Eyebrow()
+                Eyebrow().rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0)).offset(x: -60, y: 0)
+                Path{(path) in
+                    path.move(to: CGPoint(x: 130, y: 166))
+                    path.addLine(to: CGPoint(x: 130, y: 169))
+                }.stroke(style: StrokeStyle(lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/,lineCap:.round
+                ))
+                Path{(path) in
+                    path.move(to: CGPoint(x: 99, y: 141))
+                    path.addQuadCurve(to: CGPoint(x: 114, y: 147), control: CGPoint(x: 108, y: 143))
+                }.stroke(lineWidth: 1)
+                Path{(path) in
+                    path.move(to: CGPoint(x: 144, y: 148))
+                    path.addQuadCurve(to: CGPoint(x: 159, y: 142), control: CGPoint(x: 147, y: 146))
+                }.stroke(lineWidth: 1)            } //kuchi
         }
     }}
 struct Eye: Shape{
     func path(in rect:CGRect) -> Path {
-        Path{(path) in
-            path.move(to: CGPoint(x: 63, y: 154))
-            path.addCurve(to: CGPoint(x: 115, y: 152), control1: CGPoint(x: 86, y: 148), control2: CGPoint(x: 111, y: 154))
-            path.move(to: CGPoint(x: 113, y: 152))
-            path.addCurve(to: CGPoint(x: 63, y: 154), control1: CGPoint(x: 111, y: 154), control2: CGPoint(x: 88, y: 136))
-            //path.addQuadCurve(to: CGPoint(x: 63, y: 154), control: CGPoint(x: 85, y: 141))
-        }
-        
+
+            Path{(path) in
+                path.move(to: CGPoint(x: 63, y: 154))
+                path.addCurve(to: CGPoint(x: 115, y: 152), control1: CGPoint(x: 86, y: 148), control2: CGPoint(x: 111, y: 154))
+                path.move(to: CGPoint(x: 113, y: 152))
+                path.addCurve(to: CGPoint(x: 63, y: 154), control1: CGPoint(x: 111, y: 154), control2: CGPoint(x: 88, y: 136))
+                //path.addQuadCurve(to: CGPoint(x: 63, y: 154), control: CGPoint(x: 85, y: 141))
+
     }
+    }
+}
+struct Eyebrow: Shape {
+    func path(in rect:CGRect) -> Path {
+        Path{(path) in
+            path.move(to: CGPoint(x: 97, y: 151))
+            path.addQuadCurve(to: CGPoint(x: 97, y: 147), control: CGPoint(x: 98, y: 149))
+            path.addQuadCurve(to: CGPoint(x: 78, y: 147), control: CGPoint(x: 88, y: 145))
+            path.addQuadCurve(to: CGPoint(x: 79, y: 151), control: CGPoint(x: 78, y: 150))
+            path.addQuadCurve(to: CGPoint(x: 97, y: 151), control: CGPoint(x: 88, y: 151))
+            
+        }    }
+
 }
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
