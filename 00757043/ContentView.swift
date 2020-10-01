@@ -37,7 +37,16 @@ struct ContentView: View {
                 path.addLine(to: CGPoint(x:190, y:58))
                 path.addQuadCurve(to: CGPoint(x:133, y: 33), control: CGPoint(x:170, y: 29))
                 
-            }.stroke(lineWidth: 2)        }
+            }.stroke(lineWidth: 2)
+            Path{ (path) in
+                path.move(to: CGPoint(x:217, y:107))
+                path.addQuadCurve(to: CGPoint(x:190, y:58), control: CGPoint(x:206, y:79))
+            }.stroke(lineWidth: 2)
+            Path{(path) in
+                path.move(to: CGPoint(x:65, y:61))
+                path.addQuadCurve(to: CGPoint(x:43, y:106), control: CGPoint(x:49, y:80))
+            }.stroke(lineWidth: 2)
+        }
 
 
         
