@@ -12,17 +12,18 @@ struct ContentView: View {
         ZStack{
             Group {
                 HairDeco().fill(Color(red: 99/255, green: 66/255, blue: 69/255))
-                HDside().fill(Color(red: 224/255, green: 198/255, blue: 184/255))
+                HDsideLeft().fill(Color(red: 224/255, green: 198/255, blue: 184/255))
+                HDsideRight().fill(Color(red: 224/255, green: 198/255, blue: 184/255))
                 Head().fill(Color(red: 226/255, green: 163/255, blue: 156/255))
                 Head().stroke(lineWidth: 2)
                 HairDeco().stroke(lineWidth:2)
                 FaceColor().fill(Color(red: 255/255, green: 226/255, blue: 210/255))
                 Face().stroke(lineWidth: 1)
                 Hairdet().stroke(lineWidth: 0.5)
-                HDside().stroke(lineWidth: 0.5)
-
+                HDsideLeft().stroke(lineWidth: 0.5)
 
             }
+            HDsideRight().stroke(lineWidth: 0.5)
             Group{
                 Mouse().fill(Color.white)
                 Mouse().stroke(lineWidth: 1)  //kuchi
@@ -41,15 +42,37 @@ struct ContentView: View {
                     path.addQuadCurve(to: CGPoint(x: 159, y: 142), control: CGPoint(x: 147, y: 146))
                 }.stroke(lineWidth: 1) //browR
             }
+            Brow().fill(Color(red: 226/255, green: 163/255, blue: 156/255))
+            Brow().stroke(lineWidth: 0.5)
 
             Path{(path) in
                 path.move(to: CGPoint(x: 130, y: 166))
                 path.addLine(to: CGPoint(x: 130, y: 169))
             }.stroke(style: StrokeStyle(lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/,lineCap:.round
             ))                      //nose
+//            Path{(path) in
+//                path.move(to: CGPoint(x: 191, y: 194))
+//                path.addQuadCurve(to: CGPoint(x:70, y: 194), control: CGPoint(x:138, y: 225))
+//                path.addLine(to: CGPoint(x: 75, y: 205))
+//                path.addQuadCurve(to: CGPoint(x:183, y: 208), control: CGPoint(x:129, y: 225))
+//                path.addLine(to: CGPoint(x: 191, y: 194))
+//            }.fill(Color(red: 190/255, green: 142/255, blue: 155/255))              //nose
         }
 
     }}
+struct Brow:Shape {
+    func path(in rect:CGRect) -> Path {
+        Path{(path) in
+            path.move(to: CGPoint(x: 96, y: 123))
+            path.addQuadCurve(to: CGPoint(x: 113, y: 117), control: CGPoint(x: 102, y: 117))//110117
+            path.addLine(to:CGPoint(x: 115, y: 119))
+            path.addQuadCurve(to:CGPoint(x: 96, y: 123), control: CGPoint(x: 103, y: 119))
+            path.move(to:CGPoint(x: 148, y: 116))
+            path.addQuadCurve(to:CGPoint(x: 165, y: 124), control: CGPoint(x: 158, y: 114))
+            path.addCurve(to: CGPoint(x: 148, y: 116), control1: CGPoint(x: 164, y: 123), control2: CGPoint(x: 154, y: 117))//195127
+        }
+    }
+}
 struct Mouse:Shape{
     func path(in rect:CGRect) -> Path {
         Path{(path) in
@@ -59,7 +82,7 @@ struct Mouse:Shape{
         }
     }
 }
-struct HDside:Shape {
+struct HDsideLeft:Shape {
     func path(in rect:CGRect) -> Path {
         Path{(path) in
             path.move(to: CGPoint(x: 40, y: 93))
@@ -73,6 +96,23 @@ struct HDside:Shape {
         }
     }
 }
+struct HDsideRight: Shape{
+    func path(in rect:CGRect) -> Path {
+        Path{(path) in
+            path.move(to: CGPoint(x: 220, y: 93))
+            path.addArc(center: CGPoint(x: 216, y: 89), radius: 5, startAngle: .degrees(0), endAngle: .degrees(240), clockwise: true)
+            path.addArc(center: CGPoint(x: 209, y: 83), radius: 5, startAngle: .degrees(0), endAngle: .degrees(260), clockwise: true)
+            path.addArc(center: CGPoint(x: 204, y: 77), radius: 5, startAngle: .degrees(0), endAngle: .degrees(280), clockwise: true)
+            path.addArc(center: CGPoint(x: 200, y: 70), radius: 5, startAngle: .degrees(20), endAngle: .degrees(260), clockwise: true)
+            path.addArc(center: CGPoint(x: 197, y: 63), radius: 3, startAngle: .degrees(20), endAngle: .degrees(280), clockwise: true)
+            path.addLine(to: CGPoint(x: 190, y: 58))
+            path.addQuadCurve(to: CGPoint(x:217, y:107), control: CGPoint(x:206, y:79))
+            path.addLine(to: CGPoint(x: 220, y: 93))
+
+
+
+        }
+    }}
 struct Eye: Shape{
     func path(in rect:CGRect) -> Path {
 
