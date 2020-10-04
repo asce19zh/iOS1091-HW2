@@ -301,25 +301,3 @@ struct FaceView: View {
         ))
     }
 }
-
-    struct SecondView:View {
-        var body: some View{
-            ZStack{
-                Group {
-                    Image("anya bg")
-                        .resizable()
-                        .frame(width: 375.0, height: 688)
-                    HeadView()
-                    FaceView()
-                    Path{(path) in
-                        path.move(to: CGPoint(x: 150, y: 285))
-                        path.addLine(to: CGPoint(x: 150, y: 250))
-                        path.addLine(to:CGPoint(x: 175, y: 280))
-                        path.closeSubpath()
-                    }.fill(Color.white)
-                    Path(ellipseIn: CGRect(x: 135, y: 260, width: 200, height: 100)).fill(Color.white)
-                    Text("呵").font(.largeTitle).offset(x:50, y:-30)
-                }
-            }
-        }
-    }
