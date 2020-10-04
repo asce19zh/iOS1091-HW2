@@ -32,19 +32,19 @@ struct ContentView: View {
                 Mouse().fill(Color.white)
                 Mouse().stroke(lineWidth: 1)  //kuchi
                 Eye().fill(Color.white)
-                Eye().fill(Color.white).rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0)).offset(x: -115, y: 0)
+                EyeView()
                 Eye().stroke()
-                Eye().stroke(lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/).rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0)).offset(x: -115, y: 0)
-                Eyebrow()
-                Eyebrow().rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0)).offset(x: -115, y: 0)
+                LeftEyeView()
+                Eyeball()
+                Eyeball().rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0)).offset(x: -115, y: 0)
                 Path{(path) in
                     path.move(to: CGPoint(x: 99, y: 141))
                     path.addQuadCurve(to: CGPoint(x: 114, y: 147), control: CGPoint(x: 108, y: 143))
-                }.stroke(lineWidth: 1)  //browL
+                }.stroke(lineWidth: 1)  //L
                 Path{(path) in
                     path.move(to: CGPoint(x: 144, y: 148))
                     path.addQuadCurve(to: CGPoint(x: 159, y: 142), control: CGPoint(x: 147, y: 146))
-                }.stroke(lineWidth: 1) //browR
+                }.stroke(lineWidth: 1) //R
             }
             Group{
                 Brow().fill(Color(red: 226/255, green: 163/255, blue: 156/255))
@@ -142,7 +142,7 @@ struct Eye: Shape{
     }
     }
 }
-struct Eyebrow: Shape {
+struct Eyeball: Shape {
     func path(in rect:CGRect) -> Path {
         Path{(path) in
             path.move(to: CGPoint(x: 97, y: 151))
@@ -278,3 +278,15 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
+
+struct LeftEyeView: View {
+    var body: some View {
+        Eye().stroke(lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/).rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0)).offset(x: -115, y: 0)
+    }
+}
+
+struct EyeView: View {
+    var body: some View {
+        Eye().fill(Color.white).rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0)).offset(x: -115, y: 0)
+    }
+}
