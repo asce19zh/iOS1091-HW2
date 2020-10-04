@@ -9,52 +9,13 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-
         ZStack{
-            Image("anya bg")
-                .resizable()
-                .frame(width: 375.0, height: 688)
             Group {
-                HairDeco().fill(Color(red: 99/255, green: 66/255, blue: 69/255))
-                HDsideLeft().fill(Color(red: 224/255, green: 198/255, blue: 184/255))
-                HDsideRight().fill(Color(red: 224/255, green: 198/255, blue: 184/255))
-                Head().fill(Color(red: 226/255, green: 163/255, blue: 156/255))
-                Head().stroke(lineWidth: 2)
-                HairDeco().stroke(lineWidth:2)
-                FaceColor().fill(Color(red: 255/255, green: 226/255, blue: 210/255))
-                Face().stroke(lineWidth: 1)
-                Hairdet().stroke(lineWidth: 0.5)
-                HDsideLeft().stroke(lineWidth: 0.5)
-
-            }
-            HDsideRight().stroke(lineWidth: 0.5)
-            Group{
-                Mouse().fill(Color.white)
-                Mouse().stroke(lineWidth: 1)  //kuchi
-                Eye().fill(Color.white)
-                EyeView()
-                Eye().stroke()
-                LeftEyeView()
-                Eyeball()
-                Eyeball().rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0)).offset(x: -115, y: 0)
-                Path{(path) in
-                    path.move(to: CGPoint(x: 99, y: 141))
-                    path.addQuadCurve(to: CGPoint(x: 114, y: 147), control: CGPoint(x: 108, y: 143))
-                }.stroke(lineWidth: 1)  //L
-                Path{(path) in
-                    path.move(to: CGPoint(x: 144, y: 148))
-                    path.addQuadCurve(to: CGPoint(x: 159, y: 142), control: CGPoint(x: 147, y: 146))
-                }.stroke(lineWidth: 1) //R
-            }
-            Group{
-                Brow().fill(Color(red: 226/255, green: 163/255, blue: 156/255))
-                Brow().stroke(lineWidth: 0.5)
-
-                Path{(path) in
-                    path.move(to: CGPoint(x: 130, y: 166))
-                    path.addLine(to: CGPoint(x: 130, y: 169))
-                }.stroke(style: StrokeStyle(lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/,lineCap:.round
-                ))
+                Image("anya bg")
+                    .resizable()
+                    .frame(width: 375.0, height: 688)
+                HeadView()
+                FaceView()
                 Path{(path) in
                     path.move(to: CGPoint(x: 150, y: 285))
                     path.addLine(to: CGPoint(x: 150, y: 250))
@@ -64,15 +25,6 @@ struct ContentView: View {
                 Path(ellipseIn: CGRect(x: 135, y: 260, width: 200, height: 100)).fill(Color.white)
                 Text("呵").font(.largeTitle).offset(x:50, y:-30)
             }
-
-                //nose
-//            Path{(path) in
-//                path.move(to: CGPoint(x: 191, y: 194))
-//                path.addQuadCurve(to: CGPoint(x:70, y: 194), control: CGPoint(x:138, y: 225))
-//                path.addLine(to: CGPoint(x: 75, y: 205))
-//                path.addQuadCurve(to: CGPoint(x:183, y: 208), control: CGPoint(x:129, y: 225))
-//                path.addLine(to: CGPoint(x: 191, y: 194))
-//            }.fill(Color(red: 190/255, green: 142/255, blue: 155/255))              //nose
         }
 
     }}
@@ -179,7 +131,7 @@ struct Face:Shape {
         }
     }
 }
-struct Hairdet:Shape{
+struct HairDetailed:Shape{
     func path(in rect:CGRect) -> Path {
         Path{(path) in
             path.move(to: CGPoint(x:34, y:147))
@@ -253,7 +205,7 @@ struct Head: Shape {
             path.addQuadCurve(to: CGPoint(x:190, y:58), control: CGPoint(x:206, y:79))
             path.addQuadCurve(to: CGPoint(x:133, y: 33), control: CGPoint(x:170, y: 29))
             
-        }//.stroke(lineWidth: 2)//.fill(Color(red: 226/255, green: 163/255, blue: 156/255))
+        }
     }
 }
 struct HairDeco: Shape {
@@ -278,15 +230,53 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-
-struct LeftEyeView: View {
+struct EyeView: View {
     var body: some View {
+        Eye().fill(Color.white)
+        Eye().fill(Color.white).rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0)).offset(x: -115, y: 0)
         Eye().stroke(lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/).rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0)).offset(x: -115, y: 0)
+        Eye().stroke()
+        Eyeball()
+        Eyeball().rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0)).offset(x: -115, y: 0)
+        Path{(path) in
+            path.move(to: CGPoint(x: 99, y: 141))
+            path.addQuadCurve(to: CGPoint(x: 114, y: 147), control: CGPoint(x: 108, y: 143))
+        }.stroke(lineWidth: 1)  //L
+        Path{(path) in
+            path.move(to: CGPoint(x: 144, y: 148))
+            path.addQuadCurve(to: CGPoint(x: 159, y: 142), control: CGPoint(x: 147, y: 146))
+        }.stroke(lineWidth: 1) //R
+    }
+    
+}
+
+struct HeadView: View {
+    var body: some View {
+        HairDeco().fill(Color(red: 99/255, green: 66/255, blue: 69/255))
+        HDsideLeft().fill(Color(red: 224/255, green: 198/255, blue: 184/255))
+        HDsideRight().fill(Color(red: 224/255, green: 198/255, blue: 184/255))
+        Head().fill(Color(red: 226/255, green: 163/255, blue: 156/255))
+        Head().stroke(lineWidth: 2)
+        HairDeco().stroke(lineWidth:2)
+        HairDetailed().stroke(lineWidth: 0.5)
+        HDsideLeft().stroke(lineWidth: 0.5)
+        HDsideRight().stroke(lineWidth: 0.5)
     }
 }
 
-struct EyeView: View {
+struct FaceView: View {
     var body: some View {
-        Eye().fill(Color.white).rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0)).offset(x: -115, y: 0)
+        FaceColor().fill(Color(red: 255/255, green: 226/255, blue: 210/255))
+        Face().stroke(lineWidth: 1)
+        Mouse().fill(Color.white)
+        Mouse().stroke(lineWidth: 1)  //kuchi
+        EyeView()
+        Brow().fill(Color(red: 226/255, green: 163/255, blue: 156/255))
+        Brow().stroke(lineWidth: 0.5)
+        Path{(path) in   //nose
+            path.move(to: CGPoint(x: 130, y: 166))
+            path.addLine(to: CGPoint(x: 130, y: 169))
+        }.stroke(style: StrokeStyle(lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/,lineCap:.round
+        ))
     }
 }
