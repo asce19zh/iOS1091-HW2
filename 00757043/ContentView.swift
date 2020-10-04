@@ -9,7 +9,11 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
+
         ZStack{
+            Image("anya bg")
+                .resizable()
+                .frame(width: 375.0, height: 688)
             Group {
                 HairDeco().fill(Color(red: 99/255, green: 66/255, blue: 69/255))
                 HDsideLeft().fill(Color(red: 224/255, green: 198/255, blue: 184/255))
@@ -28,11 +32,11 @@ struct ContentView: View {
                 Mouse().fill(Color.white)
                 Mouse().stroke(lineWidth: 1)  //kuchi
                 Eye().fill(Color.white)
-                Eye().fill(Color.white).rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0)).offset(x: -60, y: 0)
+                Eye().fill(Color.white).rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0)).offset(x: -115, y: 0)
                 Eye().stroke()
-                Eye().stroke(lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/).rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0)).offset(x: -60, y: 0)
+                Eye().stroke(lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/).rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0)).offset(x: -115, y: 0)
                 Eyebrow()
-                Eyebrow().rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0)).offset(x: -60, y: 0)
+                Eyebrow().rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0)).offset(x: -115, y: 0)
                 Path{(path) in
                     path.move(to: CGPoint(x: 99, y: 141))
                     path.addQuadCurve(to: CGPoint(x: 114, y: 147), control: CGPoint(x: 108, y: 143))
@@ -42,14 +46,26 @@ struct ContentView: View {
                     path.addQuadCurve(to: CGPoint(x: 159, y: 142), control: CGPoint(x: 147, y: 146))
                 }.stroke(lineWidth: 1) //browR
             }
-            Brow().fill(Color(red: 226/255, green: 163/255, blue: 156/255))
-            Brow().stroke(lineWidth: 0.5)
+            Group{
+                Brow().fill(Color(red: 226/255, green: 163/255, blue: 156/255))
+                Brow().stroke(lineWidth: 0.5)
 
-            Path{(path) in
-                path.move(to: CGPoint(x: 130, y: 166))
-                path.addLine(to: CGPoint(x: 130, y: 169))
-            }.stroke(style: StrokeStyle(lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/,lineCap:.round
-            ))                      //nose
+                Path{(path) in
+                    path.move(to: CGPoint(x: 130, y: 166))
+                    path.addLine(to: CGPoint(x: 130, y: 169))
+                }.stroke(style: StrokeStyle(lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/,lineCap:.round
+                ))
+                Path{(path) in
+                    path.move(to: CGPoint(x: 150, y: 285))
+                    path.addLine(to: CGPoint(x: 150, y: 250))
+                    path.addLine(to:CGPoint(x: 175, y: 280))
+                    path.closeSubpath()
+                }.fill(Color.white)
+                Path(ellipseIn: CGRect(x: 135, y: 260, width: 200, height: 100)).fill(Color.white)
+                Text("呵").font(.largeTitle).offset(x:50, y:-30)
+            }
+
+                //nose
 //            Path{(path) in
 //                path.move(to: CGPoint(x: 191, y: 194))
 //                path.addQuadCurve(to: CGPoint(x:70, y: 194), control: CGPoint(x:138, y: 225))
