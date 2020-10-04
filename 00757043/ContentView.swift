@@ -4,7 +4,6 @@
 //
 //  Created by User09 on 2020/10/1.
 //130   164 227
-
 import SwiftUI
 
 struct ContentView: View {
@@ -15,6 +14,7 @@ struct ContentView: View {
                     .resizable()
                     .frame(width: 375.0, height: 688)
                 HeadView()
+                //BlondeView()   //Blonde Ver.
                 FaceView()
                 Path{(path) in
                     path.move(to: CGPoint(x: 150, y: 285))
@@ -237,7 +237,14 @@ struct EyeView: View {
         Eye().stroke(lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/).rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0)).offset(x: -115, y: 0)
         Eye().stroke()
         Eyeball()
+        Eyeball().stroke(lineWidth: 0.5)
         Eyeball().rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0)).offset(x: -115, y: 0)
+        Eyeball().stroke(lineWidth: 0.5).rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0)).offset(x: -115, y: 0)
+        /*blue eye ver.
+        Eyeball().fill(Color(red: 161/255, green: 202/255, blue: 241/255))
+        Eyeball().stroke(lineWidth: 0.5)
+        Eyeball().fill(Color(red: 161/255, green: 202/255, blue: 241/255)).rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0)).offset(x: -115, y: 0)
+        Eyeball().stroke(lineWidth: 0.5).rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0)).offset(x: -115, y: 0)*/
         Path{(path) in
             path.move(to: CGPoint(x: 99, y: 141))
             path.addQuadCurve(to: CGPoint(x: 114, y: 147), control: CGPoint(x: 108, y: 143))
@@ -263,7 +270,20 @@ struct HeadView: View {
         HDsideRight().stroke(lineWidth: 0.5)
     }
 }
-
+struct BlondeView:View{
+    var body: some View {
+        HairDeco().fill(Color(red: 99/255, green: 66/255, blue: 69/255))
+        HDsideLeft().fill(Color(red: 224/255, green: 198/255, blue: 184/255))
+        HDsideRight().fill(Color(red: 224/255, green: 198/255, blue: 184/255))
+        Head().fill(Color(red: 250/255, green: 240/255, blue: 190/255))
+        Head().stroke(lineWidth: 2)
+        HairDeco().stroke(lineWidth:2)
+        HairDetailed().stroke(lineWidth: 0.5)
+        HDsideLeft().stroke(lineWidth: 0.5)
+        HDsideRight().stroke(lineWidth: 0.5)
+    }
+    
+}
 struct FaceView: View {
     var body: some View {
         FaceColor().fill(Color(red: 255/255, green: 226/255, blue: 210/255))
@@ -272,6 +292,7 @@ struct FaceView: View {
         Mouse().stroke(lineWidth: 1)  //kuchi
         EyeView()
         Brow().fill(Color(red: 226/255, green: 163/255, blue: 156/255))
+        //Brow().fill(Color(red: 250/255, green: 240/255, blue: 190/255)) Blonde
         Brow().stroke(lineWidth: 0.5)
         Path{(path) in   //nose
             path.move(to: CGPoint(x: 130, y: 166))
@@ -280,3 +301,25 @@ struct FaceView: View {
         ))
     }
 }
+
+    struct SecondView:View {
+        var body: some View{
+            ZStack{
+                Group {
+                    Image("anya bg")
+                        .resizable()
+                        .frame(width: 375.0, height: 688)
+                    HeadView()
+                    FaceView()
+                    Path{(path) in
+                        path.move(to: CGPoint(x: 150, y: 285))
+                        path.addLine(to: CGPoint(x: 150, y: 250))
+                        path.addLine(to:CGPoint(x: 175, y: 280))
+                        path.closeSubpath()
+                    }.fill(Color.white)
+                    Path(ellipseIn: CGRect(x: 135, y: 260, width: 200, height: 100)).fill(Color.white)
+                    Text("呵").font(.largeTitle).offset(x:50, y:-30)
+                }
+            }
+        }
+    }
